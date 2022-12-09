@@ -2,7 +2,7 @@
 
 session_start();
 error_reporting(0);
-if (!isset($_SESSION['username'])) {
+if(!isset($_SESSION['username'])) {
     header("location:login.php");
 
 } elseif ($_SESSION['usertype'] == 'student') {
@@ -19,7 +19,7 @@ $data = mysqli_connect($host, $user, $password, $db);
 
 if($_GET['teacher_id']) {
 
-    $t_id = $_GET['teacher_id'];
+    $t_id=$_GET['teacher_id'];
 
     $sql="SELECT * FROM teacher WHERE id='$t_id' ";
 
@@ -27,10 +27,10 @@ if($_GET['teacher_id']) {
 
     $info = $result->fetch_assoc();
 }
-if(isset($_POST['update_teacher'])){
-    $id = $_post['id'];
-    $t_name = $_post['name'];
-    $t_des = $_post['description'];
+if(isset($_POST['update-teacher'])){
+    $id = $_POST['id'];
+    $t_name = $_POST['name'];
+    $t_des = $_POST['description'];
     $file = $_FILES['image']['name'];
     $dst = ",/image/".$file;
     $dst_db="image/".$file;

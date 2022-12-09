@@ -6,7 +6,7 @@ error_reporting(0);
 if (!isset($_SESSION['username'])) {
     header("location:login.php");
 
-} elseif ($_session['usertype'] == 'student') {
+} elseif ($_SESSION['usertype'] == 'student') {
     header("location:login.php");
 
 }
@@ -18,7 +18,7 @@ $db = "schoolproject";
 
 $data = mysqli_connect($host, $user, $password, $db);
 
-$name=$_SESSION['usrname'];
+$name=$_SESSION['username'];
 
 $sql = "SELECT * FROM user WHERE username='$name'";
 
@@ -26,6 +26,23 @@ $result = mysqli_query($data, $sql);
 
 $info=mysqli_fetch_assoc($result);
 
+
+if(isset($_POST['update_profile']))
+{
+    $s_email = $_POST['email'];
+    $s_phone = $_POST['phone'];
+    $s_password = $_POST['password'];
+
+    $sql2 = "UPDATE user SET email='$s_email',phone='$s_phone',password='$s_password' WHERE username='$name' ";
+
+    $result2 = mysqli_query($data, $sql2);
+
+    if($result2){
+        // echo "update success";
+        header('location:student_profile.php');
+    }
+
+}
 
 ?>
 
@@ -75,13 +92,9 @@ include 'student_sidebar.php'
     <center>
         <h1>Update Profile</h1>
         <br><br>
-    <form>
+    <form action="#" method="POST">
         <div class="div_deg">
 
-        <div>
-            <label>Name</label>
-            <input type="text" name="name" value="<?php echo "{$info['username']}" ?> ">
-        </div>
         <div>
             <label>Email</label>
             <input type="text" name="email" value="<?php echo "{$info['email']}"?> ">
@@ -95,7 +108,7 @@ include 'student_sidebar.php'
             <input type="text" name="password" value="<?php echo "{$info['password']}" ?>" >
         </div>
         <div>
-            <input  type="submit" class="btn btn-primary" name="update">
+            <input  type="submit" class="btn btn-primary" name="update_profile" value="Update">
         </div>
 
         </div>

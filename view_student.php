@@ -5,7 +5,7 @@ error_reporting(0);
 if (!isset($_SESSION['username'])) {
     header("location:login.php");
 
-} elseif ($_session['usertype'] == 'student') {
+} elseif ($_SESSION['usertype'] == 'student') {
     header("location:login.php");
 
 }

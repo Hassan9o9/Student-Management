@@ -90,6 +90,7 @@ ul li a {
   height: 120px;
   border-radius: 25px;
   border: 1px solid black;
+  padding: 15px 20px;
 }
 
 #submit {
